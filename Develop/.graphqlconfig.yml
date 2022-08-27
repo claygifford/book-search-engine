@@ -1,0 +1,15 @@
+projects:
+  booksearchengine:
+    schemaPath: schema.json
+    includes:
+      - client/src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: client/src/API.ts
+        docsFilePath: client/src/graphql
+extensions:
+  amplify:
+    version: 3

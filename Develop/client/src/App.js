@@ -57,7 +57,7 @@ function App() {
       //  variables: { input: {content: 'wut face?'} },
       //});
     }
-
+    console.log('hello world');
     create();
   }, []);
   return (

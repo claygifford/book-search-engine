@@ -48,8 +48,8 @@ function App() {
     async function create() {
       let validation = await Auth.currentUserInfo();
       console.log(validation);
-      //let result = await Auth.signIn("claygifford", "B4eanie1");
-      //console.log(result);
+      let result = await Auth.signIn("claygifford", "B4eanie1");
+      console.log(result);
       //const todo = { name: "My first todo", description: "Hello world!" };
       //await API.graphql(graphqlOperation(createTodo, { input: todo }));
       //await API.graphql({

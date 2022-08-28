@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import { createUser } from '../utils/API';
-import Auth from '../utils/auth';
+import AuthService from '../utils/auth';
+import { Auth } from "aws-amplify";
 
 const SignupForm = () => {
   // set initial form state
@@ -28,15 +29,16 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await createUser(userFormData);
+      const response = await Auth.signUp({
+        username: userFormData.username,
+        password: userFormData.password,
+        attributes: {
+          email: userFormData.email,
+        },
+      });
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      const value = await Auth.currentSession();
+      AuthService.login(value.getAccessToken());
     } catch (err) {
       console.error(err);
       setShowAlert(true);

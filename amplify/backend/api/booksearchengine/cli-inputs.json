@@ -13,10 +13,6 @@
         "cognitoUserPoolId": "authbooksearchengine53105278"
       }
     ],
-    "conflictResolution": {
-      "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
-      }
-    }
+    "conflictResolution": {}
   }
 }

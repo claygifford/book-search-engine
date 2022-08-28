@@ -20,6 +20,7 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
+              <div onClick={localStorage.removeItem('saved_books')}>set value</div>
               <Nav.Link as={Link} to='/'>
                 Search For Books
               </Nav.Link>

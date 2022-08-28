@@ -32,7 +32,6 @@ const SavedBooks = () => {
           graphqlOperation(listBooks, {
             filter: {
               owner: { contains: "claygifford" },
-              //_deleted: { contains: false },
             },
           })
         );
@@ -49,7 +48,7 @@ const SavedBooks = () => {
   }, [userDataLength]);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId, version) => {
+  const handleDeleteBook = async (id, bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -60,18 +59,14 @@ const SavedBooks = () => {
 
       const books = await API.graphql(
         graphqlOperation(deleteBook, {
-          input: { id: bookId, _version: version },
+          input: { id: id },
         })
       );
 
-      // const response = await deleteBook(bookId, token);
+      setUserData({ savedBooks: userData.savedBooks.filter((b) => {
+          return b.id !== id;
+        })});
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }     
-
-      // const updatedUser = await response.json();
-      // setUserData(updatedUser);
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
@@ -115,7 +110,7 @@ const SavedBooks = () => {
                   <Card.Text>{book.description}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteBook(book.id, book._version)}
+                    onClick={() => handleDeleteBook(book.id, book.bookId)}
                   >
                     Delete this Book!
                   </Button>

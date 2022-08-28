@@ -19,5 +19,4 @@ type Book @model {
   image: String
   owner: String
   title: String
-  _deleted: Boolean
 }

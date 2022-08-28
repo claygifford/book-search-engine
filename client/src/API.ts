@@ -5,7 +5,6 @@
 export type CreateTestingInput = {
   content?: string | null,
   id?: string | null,
-  _version?: number | null,
 };
 
 export type ModelTestingConditionInput = {
@@ -61,20 +60,15 @@ export type Testing = {
   id: string,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateTestingInput = {
   content?: string | null,
   id: string,
-  _version?: number | null,
 };
 
 export type DeleteTestingInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateBookInput = {
@@ -85,7 +79,6 @@ export type CreateBookInput = {
   owner?: string | null,
   title?: string | null,
   id?: string | null,
-  _version?: number | null,
 };
 
 export type ModelBookConditionInput = {
@@ -111,9 +104,6 @@ export type Book = {
   id: string,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateBookInput = {
@@ -124,19 +114,16 @@ export type UpdateBookInput = {
   owner?: string | null,
   title?: string | null,
   id: string,
-  _version?: number | null,
 };
 
 export type DeleteBookInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateTodoInput = {
   id?: string | null,
   name: string,
   description?: string | null,
-  _version?: number | null,
 };
 
 export type ModelTodoConditionInput = {
@@ -154,9 +141,6 @@ export type Todo = {
   description?: string | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
   owner?: string | null,
 };
 
@@ -164,12 +148,10 @@ export type UpdateTodoInput = {
   id: string,
   name?: string | null,
   description?: string | null,
-  _version?: number | null,
 };
 
 export type DeleteTodoInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type ModelTestingFilterInput = {
@@ -183,7 +165,6 @@ export type ModelTestingConnection = {
   __typename: "ModelTestingConnection",
   items:  Array<Testing | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelBookFilterInput = {
@@ -202,7 +183,6 @@ export type ModelBookConnection = {
   __typename: "ModelBookConnection",
   items:  Array<Book | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelTodoFilterInput = {
@@ -234,7 +214,6 @@ export type ModelTodoConnection = {
   __typename: "ModelTodoConnection",
   items:  Array<Todo | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelSubscriptionTestingFilterInput = {
@@ -281,9 +260,6 @@ export type CreateTestingMutation = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -299,9 +275,6 @@ export type UpdateTestingMutation = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -317,9 +290,6 @@ export type DeleteTestingMutation = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -340,9 +310,6 @@ export type CreateBookMutation = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -363,9 +330,6 @@ export type UpdateBookMutation = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -386,9 +350,6 @@ export type DeleteBookMutation = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -405,9 +366,6 @@ export type CreateTodoMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };
@@ -425,9 +383,6 @@ export type UpdateTodoMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };
@@ -445,9 +400,6 @@ export type DeleteTodoMutation = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };
@@ -463,9 +415,6 @@ export type GetTestingQuery = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -484,37 +433,8 @@ export type ListTestingsQuery = {
       id: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncTestingsQueryVariables = {
-  filter?: ModelTestingFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncTestingsQuery = {
-  syncTestings?:  {
-    __typename: "ModelTestingConnection",
-    items:  Array< {
-      __typename: "Testing",
-      content?: string | null,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -534,9 +454,6 @@ export type GetBookQuery = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -560,42 +477,8 @@ export type ListBooksQuery = {
       id: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncBooksQueryVariables = {
-  filter?: ModelBookFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncBooksQuery = {
-  syncBooks?:  {
-    __typename: "ModelBookConnection",
-    items:  Array< {
-      __typename: "Book",
-      authors?: Array< string | null > | null,
-      bookId?: string | null,
-      description?: string | null,
-      image?: string | null,
-      owner?: string | null,
-      title?: string | null,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -611,9 +494,6 @@ export type GetTodoQuery = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };
@@ -634,40 +514,9 @@ export type ListTodosQuery = {
       description?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       owner?: string | null,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncTodosQuery = {
-  syncTodos?:  {
-    __typename: "ModelTodoConnection",
-    items:  Array< {
-      __typename: "Todo",
-      id: string,
-      name: string,
-      description?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      owner?: string | null,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -682,9 +531,6 @@ export type OnCreateTestingSubscription = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -699,9 +545,6 @@ export type OnUpdateTestingSubscription = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -716,9 +559,6 @@ export type OnDeleteTestingSubscription = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -738,9 +578,6 @@ export type OnCreateBookSubscription = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -760,9 +597,6 @@ export type OnUpdateBookSubscription = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -782,9 +616,6 @@ export type OnDeleteBookSubscription = {
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -800,9 +631,6 @@ export type OnCreateTodoSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };
@@ -819,9 +647,6 @@ export type OnUpdateTodoSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };
@@ -838,9 +663,6 @@ export type OnDeleteTodoSubscription = {
     description?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     owner?: string | null,
   } | null,
 };

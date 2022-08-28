@@ -2,45 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTesting = /* GraphQL */ `
-  mutation CreateTesting(
-    $input: CreateTestingInput!
-    $condition: ModelTestingConditionInput
-  ) {
-    createTesting(input: $input, condition: $condition) {
-      content
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateTesting = /* GraphQL */ `
-  mutation UpdateTesting(
-    $input: UpdateTestingInput!
-    $condition: ModelTestingConditionInput
-  ) {
-    updateTesting(input: $input, condition: $condition) {
-      content
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteTesting = /* GraphQL */ `
-  mutation DeleteTesting(
-    $input: DeleteTestingInput!
-    $condition: ModelTestingConditionInput
-  ) {
-    deleteTesting(input: $input, condition: $condition) {
-      content
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createBook = /* GraphQL */ `
   mutation CreateBook(
     $input: CreateBookInput!
@@ -92,51 +53,6 @@ export const deleteBook = /* GraphQL */ `
       id
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    createTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    updateTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    deleteTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

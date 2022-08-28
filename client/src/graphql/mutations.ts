@@ -50,6 +50,69 @@ export const deleteTesting = /* GraphQL */ `
     }
   }
 `;
+export const createBook = /* GraphQL */ `
+  mutation CreateBook(
+    $input: CreateBookInput!
+    $condition: ModelBookConditionInput
+  ) {
+    createBook(input: $input, condition: $condition) {
+      authors
+      bookId
+      description
+      image
+      owner
+      title
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateBook = /* GraphQL */ `
+  mutation UpdateBook(
+    $input: UpdateBookInput!
+    $condition: ModelBookConditionInput
+  ) {
+    updateBook(input: $input, condition: $condition) {
+      authors
+      bookId
+      description
+      image
+      owner
+      title
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteBook = /* GraphQL */ `
+  mutation DeleteBook(
+    $input: DeleteBookInput!
+    $condition: ModelBookConditionInput
+  ) {
+    deleteBook(input: $input, condition: $condition) {
+      authors
+      bookId
+      description
+      image
+      owner
+      title
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createTodo = /* GraphQL */ `
   mutation CreateTodo(
     $input: CreateTodoInput!

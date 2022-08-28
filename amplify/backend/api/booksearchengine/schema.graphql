@@ -8,7 +8,16 @@ type Todo @model @auth(rules: [{ allow: owner}]) {
   description: String
 }
 
-
 type Testing @model {
   content: String
+}
+
+type Book @model {
+  authors: [String]
+  bookId: String
+  description: String
+  image: String
+  owner: String
+  title: String
+  _deleted: Boolean
 }

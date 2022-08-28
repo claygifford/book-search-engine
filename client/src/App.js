@@ -1,26 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
-import { Amplify, API, graphqlOperation } from "aws-amplify";
-import {
-  createTesting, createTodo,
-  updatedTodo,
-  deleteTodo,
-} from "./graphql/mutations";
+import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports";
-
-import { Auth } from "aws-amplify";
 
 Amplify.configure(awsconfig);
 
 function App() {
-  // const todo = { name: "My first todo", description: "Hello world!" };
-
-  // await API.graphql(graphqlOperation(createTodo, {input: todo}));
-
   return (
     <Router>
       <>

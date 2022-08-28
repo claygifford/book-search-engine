@@ -63,6 +63,82 @@ export const syncTestings = /* GraphQL */ `
     }
   }
 `;
+export const getBook = /* GraphQL */ `
+  query GetBook($id: ID!) {
+    getBook(id: $id) {
+      authors
+      bookId
+      description
+      image
+      owner
+      title
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listBooks = /* GraphQL */ `
+  query ListBooks(
+    $filter: ModelBookFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBooks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        authors
+        bookId
+        description
+        image
+        owner
+        title
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncBooks = /* GraphQL */ `
+  query SyncBooks(
+    $filter: ModelBookFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncBooks(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        authors
+        bookId
+        description
+        image
+        owner
+        title
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getTodo = /* GraphQL */ `
   query GetTodo($id: ID!) {
     getTodo(id: $id) {

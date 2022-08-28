@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
+//import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
+
+import {
+  listBooks,
+} from "../graphql/queries";
+
+import { deleteBook } from "../graphql/mutations";
+
+import { Amplify, API, graphqlOperation } from "aws-amplify";
 
 const SavedBooks = () => {
   const [userData, setUserData] = useState({});
@@ -20,14 +28,18 @@ const SavedBooks = () => {
           return false;
         }
 
-        const response = await getMe(token);
-
-        if (!response.ok) {
-          throw new Error('something went wrong!');
+        const books = await API.graphql(
+          graphqlOperation(listBooks, {
+            filter: {
+              owner: { contains: "claygifford" },
+              //_deleted: { contains: false },
+            },
+          })
+        );
+        console.log(books);
+        if (books.data.listBooks.items) {
+          setUserData({ savedBooks: books.data.listBooks.items });
         }
-
-        const user = await response.json();
-        setUserData(user);
       } catch (err) {
         console.error(err);
       }
@@ -37,7 +49,7 @@ const SavedBooks = () => {
   }, [userDataLength]);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+  const handleDeleteBook = async (bookId, version) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -45,14 +57,22 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      const books = await API.graphql(
+        graphqlOperation(deleteBook, {
+          input: { id: bookId, _version: version },
+        })
+      );
 
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
+      // const response = await deleteBook(bookId, token);
+
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }     
+
+      // const updatedUser = await response.json();
+      // setUserData(updatedUser);
+
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
@@ -81,13 +101,22 @@ const SavedBooks = () => {
         <CardColumns>
           {userData.savedBooks.map((book) => {
             return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+              <Card key={book.bookId} border="dark">
+                {book.image ? (
+                  <Card.Img
+                    src={book.image}
+                    alt={`The cover for ${book.title}`}
+                    variant="top"
+                  />
+                ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
+                  <p className="small">Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                  <Button
+                    className="btn-block btn-danger"
+                    onClick={() => handleDeleteBook(book.id, book._version)}
+                  >
                     Delete this Book!
                   </Button>
                 </Card.Body>

@@ -77,6 +77,61 @@ export type DeleteTestingInput = {
   _version?: number | null,
 };
 
+export type CreateBookInput = {
+  authors?: Array< string | null > | null,
+  bookId?: string | null,
+  description?: string | null,
+  image?: string | null,
+  owner?: string | null,
+  title?: string | null,
+  id?: string | null,
+  _version?: number | null,
+};
+
+export type ModelBookConditionInput = {
+  authors?: ModelStringInput | null,
+  bookId?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  image?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  and?: Array< ModelBookConditionInput | null > | null,
+  or?: Array< ModelBookConditionInput | null > | null,
+  not?: ModelBookConditionInput | null,
+};
+
+export type Book = {
+  __typename: "Book",
+  authors?: Array< string | null > | null,
+  bookId?: string | null,
+  description?: string | null,
+  image?: string | null,
+  owner?: string | null,
+  title?: string | null,
+  id: string,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type UpdateBookInput = {
+  authors?: Array< string | null > | null,
+  bookId?: string | null,
+  description?: string | null,
+  image?: string | null,
+  owner?: string | null,
+  title?: string | null,
+  id: string,
+  _version?: number | null,
+};
+
+export type DeleteBookInput = {
+  id: string,
+  _version?: number | null,
+};
+
 export type CreateTodoInput = {
   id?: string | null,
   name: string,
@@ -127,6 +182,25 @@ export type ModelTestingFilterInput = {
 export type ModelTestingConnection = {
   __typename: "ModelTestingConnection",
   items:  Array<Testing | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelBookFilterInput = {
+  authors?: ModelStringInput | null,
+  bookId?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  image?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  and?: Array< ModelBookFilterInput | null > | null,
+  or?: Array< ModelBookFilterInput | null > | null,
+  not?: ModelBookFilterInput | null,
+};
+
+export type ModelBookConnection = {
+  __typename: "ModelBookConnection",
+  items:  Array<Book | null >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
@@ -184,6 +258,17 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
+export type ModelSubscriptionBookFilterInput = {
+  authors?: ModelSubscriptionStringInput | null,
+  bookId?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  image?: ModelSubscriptionStringInput | null,
+  owner?: ModelSubscriptionStringInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionBookFilterInput | null > | null,
+  or?: Array< ModelSubscriptionBookFilterInput | null > | null,
+};
+
 export type CreateTestingMutationVariables = {
   input: CreateTestingInput,
   condition?: ModelTestingConditionInput | null,
@@ -229,6 +314,75 @@ export type DeleteTestingMutation = {
   deleteTesting?:  {
     __typename: "Testing",
     content?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreateBookMutationVariables = {
+  input: CreateBookInput,
+  condition?: ModelBookConditionInput | null,
+};
+
+export type CreateBookMutation = {
+  createBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateBookMutationVariables = {
+  input: UpdateBookInput,
+  condition?: ModelBookConditionInput | null,
+};
+
+export type UpdateBookMutation = {
+  updateBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteBookMutationVariables = {
+  input: DeleteBookInput,
+  condition?: ModelBookConditionInput | null,
+};
+
+export type DeleteBookMutation = {
+  deleteBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
     id: string,
     createdAt: string,
     updatedAt: string,
@@ -364,6 +518,87 @@ export type SyncTestingsQuery = {
   } | null,
 };
 
+export type GetBookQueryVariables = {
+  id: string,
+};
+
+export type GetBookQuery = {
+  getBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListBooksQueryVariables = {
+  filter?: ModelBookFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListBooksQuery = {
+  listBooks?:  {
+    __typename: "ModelBookConnection",
+    items:  Array< {
+      __typename: "Book",
+      authors?: Array< string | null > | null,
+      bookId?: string | null,
+      description?: string | null,
+      image?: string | null,
+      owner?: string | null,
+      title?: string | null,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncBooksQueryVariables = {
+  filter?: ModelBookFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncBooksQuery = {
+  syncBooks?:  {
+    __typename: "ModelBookConnection",
+    items:  Array< {
+      __typename: "Book",
+      authors?: Array< string | null > | null,
+      bookId?: string | null,
+      description?: string | null,
+      image?: string | null,
+      owner?: string | null,
+      title?: string | null,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type GetTodoQueryVariables = {
   id: string,
 };
@@ -478,6 +713,72 @@ export type OnDeleteTestingSubscription = {
   onDeleteTesting?:  {
     __typename: "Testing",
     content?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateBookSubscriptionVariables = {
+  filter?: ModelSubscriptionBookFilterInput | null,
+};
+
+export type OnCreateBookSubscription = {
+  onCreateBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateBookSubscriptionVariables = {
+  filter?: ModelSubscriptionBookFilterInput | null,
+};
+
+export type OnUpdateBookSubscription = {
+  onUpdateBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteBookSubscriptionVariables = {
+  filter?: ModelSubscriptionBookFilterInput | null,
+};
+
+export type OnDeleteBookSubscription = {
+  onDeleteBook?:  {
+    __typename: "Book",
+    authors?: Array< string | null > | null,
+    bookId?: string | null,
+    description?: string | null,
+    image?: string | null,
+    owner?: string | null,
+    title?: string | null,
     id: string,
     createdAt: string,
     updatedAt: string,
